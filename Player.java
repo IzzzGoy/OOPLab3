@@ -35,6 +35,18 @@ public class Player {
         tribe.Update(territories);
     }
 
+    public int getEvolutionPoints() {
+        return evolutionPoints;
+    }
+
+    public long getPopulation() {
+        long population = 0;
+        for (Territory territory: tribe.getOurTerritories()) {
+            population += territory.getPopulation();
+        }
+        return population;
+    }
+
     public void AddEvolutionPoints() {
         evolutionPoints++;
     }
@@ -42,16 +54,25 @@ public class Player {
     public void AddAttack() {
         if (evolutionPoints > 0) {
             tribe.addAttack();
+            evolutionPoints--;
         }
     }
+
+    public String getName() {
+        return tribe.getName();
+    }
+
     public void AddFoodProduction() {
         if (evolutionPoints > 0) {
             tribe.addFoodProduction();
+            evolutionPoints--;
         }
     }
+
     public void AddBorn() {
         if (evolutionPoints > 0) {
             tribe.addBorn();
+            evolutionPoints--;
         }
     }
 
@@ -63,4 +84,7 @@ public class Player {
         return tribe.getOurTerritories();
     }
 
+    public Tribe getTribe() {
+        return tribe;
+    }
 }

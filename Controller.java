@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TabPane;
@@ -50,6 +51,20 @@ public class Controller implements Initializable {
     Label PlantsLabel;
     @FXML
     Label AnimalsLabel;
+    @FXML
+    Label EVOPintsValue;
+    @FXML
+    Button AddAttackButton;
+    @FXML
+    Button AddFoodProdutionButton;
+    @FXML
+    Button AddBorningButton;
+    @FXML
+    Label AttackLabel;
+    @FXML
+    Label FoodProdLable;
+    @FXML
+    Label BorningRateLable;
 
     private GraphicsContext graphicsContext;
 
@@ -91,6 +106,7 @@ public class Controller implements Initializable {
     public void clearCanvas() {
         graphicsContext.clearRect(0,0,1000,1000);
     }
+
     public void FieldInit() {
         for (int i = 0; i < 50; i++) {
             for (int j = 0; j < 50; j++) {
@@ -101,8 +117,14 @@ public class Controller implements Initializable {
         }
     }
 
-    public void showPopulation(double X, double Y) {
-        populationLabel.setText(Double.toString(X));
-        populationValue.setText(Double.toString(Y));
+    public void EVOPintsValueRefresh(String value) {
+        EVOPintsValue.setText(value);
+    }
+
+    public void ShowPlayerStat(String population,String attack, String food, String born) {
+        populationValue.setText(population);
+        AttackLabel.setText(attack);
+        FoodProdLable.setText(food);
+        BorningRateLable.setText(born);
     }
 }
