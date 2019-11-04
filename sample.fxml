@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane id="root" fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="root" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+   <center>
+      <ScrollPane id="gamePane" fx:id="gamePane" prefHeight="200.0" prefWidth="200.0" styleClass="gamePane" stylesheets="@style.css" BorderPane.alignment="CENTER">
+         <content>
+            <Canvas fx:id="gameField" height="200.0" width="200.0" />
+         </content></ScrollPane>
+   </center>
+   <right>
+      <TabPane fx:id="actionTab" prefHeight="200.0" prefWidth="200.0" styleClass="actionTab" stylesheets="@style.css" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+        <tabs>
+          <Tab id="tab" text="Statistics">
+               <content>
+                  <VBox fx:id="statBox" prefHeight="200.0" prefWidth="100.0" spacing="20.0">
+                     <children>
+                        <HBox fx:id="populationStat" prefHeight="30.0" prefWidth="200.0" spacing="10.0">
+                           <children>
+                              <Label text="Label" />
+                              <Label fx:id="populationValue" text="Label" />
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="30.0" prefWidth="200.0" spacing="10.0">
+                           <children>
+                              <Label text="Label" />
+                              <Label text="Label" />
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="30.0" prefWidth="200.0" spacing="10.0">
+                           <children>
+                              <Label text="Label" />
+                              <Label text="Label" />
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="30.0" prefWidth="200.0" spacing="10.0">
+                           <children>
+                              <Label text="Label" />
+                              <Label text="Label" />
+                           </children>
+                        </HBox>
+                     </children></VBox>
+               </content></Tab>
+          <Tab id="tab" text="Evolution">
+               <content>
+                  <VBox fx:id="evolutionBox" prefHeight="200.0" prefWidth="100.0" />
+               </content></Tab>
+        </tabs>
+      </TabPane>
+   </right>
+   <bottom>
+      <VBox id="cellStat" fx:id="cellStat" prefHeight="100.0" prefWidth="600.0" styleClass="cellStat" stylesheets="@style.css" BorderPane.alignment="CENTER">
+         <children>
+            <HBox fx:id="OwnerBox" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label text="Owner" />
+                  <Label fx:id="OwnerLabel" />
+               </children>
+            </HBox>
+            <HBox fx:id="PopulationBox" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label text="Population" />
+                  <Label fx:id="populationLabel" />
+               </children>
+            </HBox>
+            <HBox fx:id="WaterBox" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label text="WaterLimit" />
+                  <Label fx:id="WaterLbel" />
+               </children>
+            </HBox>
+            <HBox fx:id="ResourceBox" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label text="Plants" />
+                  <Label fx:id="PlantsLabel" />
+                  <Label text="Animals" />
+                  <Label fx:id="AnimalsLabel" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </bottom>
+</BorderPane>

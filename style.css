@@ -1,0 +1,23 @@
+.cellStat {
+    -fx-padding: 10px;
+    -fx-border-color: #455a64;
+    fx-background-color: #ffebee;
+    -fx-border-width: 1px;
+}
+
+.gamePane {
+    -fx-background-color: #ffebee;
+    -fx-padding: 0px;
+}
+
+.gameField {
+    -fx-background-color: white;
+}
+
+.actionTab {
+    -fx-background-color: #ffebee;
+}
+
+.root {
+    -fx-background-color: white;
+}
