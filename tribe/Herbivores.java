@@ -7,10 +7,12 @@ import java.util.ArrayList;
 
 public class Herbivores extends Tribe{
 
-    private final double needPlants = 0.8;
+    private final double needPlants = 2.5;
 
     public Herbivores(String name, Territory start) {
         super(TypesOfTribes.HERBIVORES, name, start);
+        food_production = 51.3;
+        attack = 10.8;
     }
 
     @Override

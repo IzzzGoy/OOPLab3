@@ -20,9 +20,8 @@ public abstract class Tribe {
         name = nameOfTribe;
         ourTerritories = new ArrayList<>();
         ourTerritories.add(startTerritory);
-        attack = Math.random() + 1;
-        born = Math.random() + 1;
-        food_production = Math.random() + 1;
+        //attack = Math.random() + 1;
+        born = 0.5;
     }
 
     public double getFood_production() {
@@ -54,16 +53,20 @@ public abstract class Tribe {
             if (index < 50) {
                 Colonise(ourTerritory, territories.get(index + 50));
                 Attack(ourTerritory, territories.get(index + 50));
+                Migration(ourTerritory, territories.get(index + 50));
                 DoAttAndCol(territories, ourTerritory, index);
             } else if (index > 2449) {
                 Colonise(ourTerritory, territories.get(index - 50));
                 Attack(ourTerritory, territories.get(index - 50));
+                Migration(ourTerritory, territories.get(index - 50));
                 DoAttAndCol(territories, ourTerritory, index);
             } else {
                 Colonise(ourTerritory, territories.get(index + 50));
                 Attack(ourTerritory, territories.get(index + 50));
                 Colonise(ourTerritory, territories.get(index - 50));
                 Attack(ourTerritory, territories.get(index - 50));
+                Migration(ourTerritory, territories.get(index + 50));
+                Migration(ourTerritory, territories.get(index - 50));
                 DoAttAndCol(territories, ourTerritory, index);
             }
         }
@@ -73,23 +76,25 @@ public abstract class Tribe {
         if (index % 50 != 0) {
             Colonise(ourTerritory,territories.get(index - 1));
             Attack(ourTerritory,territories.get(index - 1));
+            Migration(ourTerritory,territories.get(index - 1));
         }
         if ((index + 1) % 50 != 0 ) {
             Colonise(ourTerritory,territories.get(index + 1));
             Attack(ourTerritory,territories.get(index + 1));
+            Migration(ourTerritory,territories.get(index + 1));
         }
     }
 
     public void addAttack() {
         switch (this.type) {
             case PREDATORS:
-                attack += 0.7;
+                attack += 4.7;
                 break;
             case HERBIVORES:
-                attack += 0.5;
+                attack += 3.8;
                 break;
             case OMNIVOROUS:
-                attack += 0.3;
+                attack += 1.3;
                 break;
         }
     }
@@ -111,23 +116,14 @@ public abstract class Tribe {
     public void addFoodProduction() {
         switch (this.type) {
             case PREDATORS:
-                food_production += 0.5;
+                food_production += 1.5;
                 break;
             case HERBIVORES:
-                food_production += 1;
+                food_production += 5.2;
                 break;
             case OMNIVOROUS:
-                food_production += 0.7;
+                food_production += 3.7;
                 break;
-        }
-    }
-
-    private void addNeighbors(int index, ArrayList<Territory> neighbors, ArrayList<Territory> territories) {
-        if (index % 50 != 0) {                                                          //Условие для левого края
-            neighbors.add(territories.get(index - 1));
-        }
-        if ((index + 1) % 50 != 0 ) {                                                   //Условие для правого края
-            neighbors.add(territories.get(index + 1));
         }
     }
 
@@ -141,13 +137,13 @@ public abstract class Tribe {
         if (ourTerritories.contains(endTerritory) || endTerritory.getOwner() == null) {
             return;
         }
-        int warriors = (int)(attack * 1/10 * startTerritory.getPopulation());
-        if (endTerritory.Conquest(this,warriors)) {
+        int warriors = (int)(attack * 1/5 * startTerritory.getPopulation());
+        if (endTerritory.Conquest(this,warriors / 10)) {
             ourTerritories.add(endTerritory);
-            startTerritory.changePopulation(-(warriors/2));
+            startTerritory.changePopulation(-((1/5 * startTerritory.getPopulation())/10));
         }
         else {
-            startTerritory.changePopulation(-warriors);
+            startTerritory.changePopulation(-(1/5 * startTerritory.getPopulation())/20);
         }
     }
 
@@ -163,8 +159,25 @@ public abstract class Tribe {
         }
     }
 
+    private void Migration(Territory startTerritory, Territory endTerritory) {
+        if (!ourTerritories.contains(endTerritory) || endTerritory.getOwner() == null) {
+            return;
+        }
+        if (endTerritory.getPopulation() != endTerritory.getWater() && (startTerritory.getPopulation() - (endTerritory.getWater() - endTerritory.getPopulation()) / 10) > 0) {
+            startTerritory.changePopulation(-(endTerritory.getWater() - endTerritory.getPopulation()) / 10);
+            endTerritory.changePopulation((endTerritory.getWater() - endTerritory.getPopulation()) / 10);
+        }
+    }
+
     public final ArrayList<Territory> getOurTerritories() {
         return ourTerritories;
     }
 
+    public double getAttack() {
+        return attack;
+    }
+
+    public double getBorn() {
+        return born;
+    }
 }

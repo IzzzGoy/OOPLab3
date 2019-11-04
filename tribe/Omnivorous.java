@@ -7,12 +7,14 @@ import java.util.ArrayList;
 
 public class Omnivorous extends Tribe {
 
-    private final double needPlants = 0.5;
-    private final double needAnimals = 0.2;
+    private final double needPlants = 2.1;
+    private final double needAnimals = 1.5;
 
     public Omnivorous(String name, Territory start) {
 
         super(TypesOfTribes.OMNIVOROUS, name, start);
+        food_production = 25.8;
+        attack = 18.2;
     }
 
     @Override

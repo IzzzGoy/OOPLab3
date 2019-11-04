@@ -7,10 +7,12 @@ import java.util.ArrayList;
 
 public class Predators extends Tribe {
 
-    private final double needAnimals = 0.4;
+    private final double needAnimals = 1.9;
 
     public Predators(String name, Territory terr) {
         super(TypesOfTribes.PREDATORS,name, terr);
+        food_production = 13.0;
+        attack = 25.0;
     }
 
     @Override
